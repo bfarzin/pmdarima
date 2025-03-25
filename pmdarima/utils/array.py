@@ -142,7 +142,7 @@ def check_endog(
     y,
     dtype=DTYPE,
     copy=True,
-    force_all_finite=False,
+    ensure_all_finite=False,
     preserve_series=True,
 ):
     """Wrapper for ``check_array`` and ``column_or_1d`` from sklearn
@@ -179,7 +179,7 @@ def check_endog(
     endog = skval.check_array(
         y,
         ensure_2d=False,
-        force_all_finite=force_all_finite,
+        ensure_all_finite=ensure_all_finite,
         copy=copy,
         dtype=dtype,
     )
@@ -198,7 +198,7 @@ def check_endog(
     return endog
 
 
-def check_exog(X, dtype=DTYPE, copy=True, force_all_finite=True):
+def check_exog(X, dtype=DTYPE, copy=True, ensure_all_finite=True):
     """A wrapper for ``check_array`` for 2D arrays
 
     Parameters
@@ -234,7 +234,7 @@ def check_exog(X, dtype=DTYPE, copy=True, force_all_finite=True):
         # if not copy, go straight to asserting finite
         if copy and dtype is not None:
             X = X.astype(dtype)  # tantamount to copy
-        if force_all_finite and (~X.apply(np.isfinite)).any().any():
+        if ensure_all_finite and (~X.apply(np.isfinite)).any().any():
             raise ValueError("Found non-finite values in dataframe")
         return X
 
@@ -244,7 +244,7 @@ def check_exog(X, dtype=DTYPE, copy=True, force_all_finite=True):
         ensure_2d=True,
         dtype=DTYPE,
         copy=copy,
-        force_all_finite=force_all_finite,
+        ensure_all_finite=ensure_all_finite,
     )
 
 
@@ -355,7 +355,7 @@ def _diff_inv_vector(x, lag, differences, xi):
             xi,
             dtype=DTYPE,
             copy=False,
-            force_all_finite=False,
+            ensure_all_finite=False,
             preserve_series=False,
         )
         if xi.shape[0] != lag * differences:
@@ -389,7 +389,7 @@ def _diff_inv_matrix(x, lag, differences, xi):
                 xi,
                 dtype=DTYPE,
                 copy=False,
-                force_all_finite=False,
+                ensure_all_finite=False,
                 ensure_2d=True,
             )
             if xi.shape != (lag * differences, m):
@@ -475,7 +475,7 @@ def diff_inv(x, lag=1, differences=1, xi=None):
         x,
         dtype=DTYPE,
         copy=False,
-        force_all_finite=False,
+        ensure_all_finite=False,
         ensure_2d=False,
     )
 

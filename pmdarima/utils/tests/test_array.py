@@ -269,19 +269,19 @@ def test_check_exog_ndim_value_err(arr):
 @pytest.mark.parametrize('arr', [X_nan, X_inf])
 def test_check_exog_infinite_value_err(arr):
     with pytest.raises(ValueError):
-        check_exog(arr, force_all_finite=True)
+        check_exog(arr, ensure_all_finite=True)
 
     # show it passes when False
     assert check_exog(
-        arr, force_all_finite=False, dtype=None, copy=False) is arr
+        arr, ensure_all_finite=False, dtype=None, copy=False) is arr
 
 
 def test_exog_pd_dataframes():
     # test with copy
-    assert check_exog(X, force_all_finite=True, copy=True).equals(X)
+    assert check_exog(X, ensure_all_finite=True, copy=True).equals(X)
 
     # test without copy
-    assert check_exog(X, force_all_finite=True, copy=False) is X
+    assert check_exog(X, ensure_all_finite=True, copy=False) is X
 
 
 def test_exog_np_array():

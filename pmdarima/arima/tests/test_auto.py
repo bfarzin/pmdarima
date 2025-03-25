@@ -467,3 +467,6 @@ def test_with_seasonality4():
 
     # show it is a list
     assert hasattr(all_res, '__iter__')
+
+# if __name__ == "__main__":
+#     test_oob_with_zero_out_of_sample_size()

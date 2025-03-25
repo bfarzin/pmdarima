@@ -571,7 +571,7 @@ class ARIMA(BaseARIMA):
 
         # if exog was included, check the array...
         if X is not None:
-            X = check_exog(X, force_all_finite=False, copy=False, dtype=DTYPE)
+            X = check_exog(X, ensure_all_finite=False, copy=False, dtype=DTYPE)
 
         # determine the CV args, if any
         cv = self.out_of_sample_size
@@ -630,7 +630,7 @@ class ARIMA(BaseARIMA):
                                  'array, it must also be provided one for '
                                  'predicting or updating observations.')
             else:
-                return check_exog(X, force_all_finite=True, dtype=DTYPE)
+                return check_exog(X, ensure_all_finite=True, dtype=DTYPE)
         return None
 
     def predict_in_sample(

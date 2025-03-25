@@ -37,7 +37,7 @@ class BaseTransformer(BaseEstimator, TransformerMixin, metaclass=abc.ABCMeta):
                 y,
                 dtype=DTYPE,
                 copy=True,
-                force_all_finite=False,
+                ensure_all_finite=False,
                 preserve_series=False,
             )
 
@@ -46,7 +46,7 @@ class BaseTransformer(BaseEstimator, TransformerMixin, metaclass=abc.ABCMeta):
                 X,
                 dtype=None,
                 copy=True,
-                force_all_finite=False,
+                ensure_all_finite=False,
             )
         return y, X
 
